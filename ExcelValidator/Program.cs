@@ -71,7 +71,7 @@ var numOfSheets = worksheet.NumberOfSheets;
 
 if (numOfSheets != excelRule.ExcelWorksheetRules.Count)
 {
-    throw new Exception("O número de abas é diferente do esperado");
+    throw new Exception($"O número de abas esperado é de {excelRule.ExcelWorksheetRules.Count}, porém foi encontrado {numOfSheets} abas");
 }
 
 for (int sheetNum = 0; sheetNum < worksheet.NumberOfSheets; sheetNum++)
@@ -82,7 +82,7 @@ for (int sheetNum = 0; sheetNum < worksheet.NumberOfSheets; sheetNum++)
 
     if (sheet.SheetName != sheetRule.WorksheetName)
     {
-        throw new Exception($"O nome da aba era para ser '{sheetRule.WorksheetName}', porém foi encontrado '{sheet.SheetName}'");
+        throw new Exception($"O título da aba era para ser '{sheetRule.WorksheetName}', porém foi encontrado '{sheet.SheetName}'");
     }
 
     for (int rowNum = 0; rowNum <= sheet.LastRowNum; rowNum++)
@@ -102,7 +102,7 @@ for (int sheetNum = 0; sheetNum < worksheet.NumberOfSheets; sheetNum++)
             {
                 if (cell.StringCellValue != sheetRule.ExcelColumnRules[cellNum].HeaderName)
                 {
-                    throw new Exception($"O nome da coluna {cellNum + 1} era para ser '{sheetRule.ExcelColumnRules[cellNum].HeaderName}', porém foi encontrado '{cell.StringCellValue}'");
+                    throw new Exception($"O cabeçalho da coluna {cell.Address} era para ser '{sheetRule.ExcelColumnRules[cellNum].HeaderName}', porém foi encontrado '{cell.StringCellValue}'");
                 }
 
                 continue;
